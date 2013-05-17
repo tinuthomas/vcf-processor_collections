@@ -37,7 +37,6 @@ def vcf_parser(input_vcf):
             info_values = info_parser(info_header,info_fields,line[7])
             GT = GT_parser(line[8], line[9:])
             print '\t'.join(line[0:7] + info_values + GT ) 
-            break
     fin.close()
 
 
