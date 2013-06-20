@@ -26,10 +26,13 @@ def vcf_parser(input_vcf):
             info_fields[infoname.group(1)] = infotype.group(1)
         elif line.startswith('#CHROM'):
             line = line.split('\t')
-            sample_names = line[9:] 
-            for head in info_fields.keys():
+            for head in sorted(info_fields.keys()):
                 info_header.append(head)
-            print '\t'.join(line[0:7] + info_header + line[9:])
+            if len(line) > 8:
+                sample_names = line[9:] 
+                print '\t'.join(line[0:7] + info_header + line[9:])
+            else:
+                print '\t'.join(line[0:7] + info_header)
         elif re.search(r'^(\d+|X|Y)|^chr(\d+|X|Y)',line):
             line = line.split('\t')
             if line[0].startswith('chr'):
@@ -40,15 +43,15 @@ def vcf_parser(input_vcf):
     fin.close()
 
 
-def info_parser(info_header, info_fields,info_col):
+def info_parser(info_header, info_fields, info_col):
     """
     Function to parse INFO column
-    This function will receive the list of INFO column names from the VCF header, info_fields dictionary with key as INFO column name value as TYPE,
+    This function will receive the list of INFO column names from the VCF header, i.e from 'info_fields dictionary' with key as INFO column name value as TYPE
     INFO column for a particular variant from the VCF
     """
     info = {}
     info_values = []
-    for inf in info_fields.keys():  #Initializing the dict values to None
+    for inf in sorted(info_fields.keys()):  #Initializing the dict values to None
         info[inf] = 'None'
     for col in info_col.split(';'):
         if info_fields[col.split('=')[0]] != 'Flag' :
