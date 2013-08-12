@@ -5,7 +5,7 @@
 	keeping original AC,AF, AN text intact. This would be useful when you want to merge VCFs with samples from different centers.
 	
 	Usage 	: python CenterSpecific_ACANAF.py VCF CenterName
-	example : python CenterSpecific_ACANAF.py  MAYO_SimplexoSubset_GGA_VA_gatk2.6.4_Part2_07152013.vcf.gz Mayo
+	example : python CenterSpecific_ACANAF.py  Center_SimplexoSubset_GGA_VA_gatk2.6.4_Part2_07152013.vcf.gz Mayo
 """
 
 import sys
@@ -18,7 +18,7 @@ def CenterSpecific_ACANAF():
 	keeping original AC,AF, AN text intact
 	
 	Usage 	: python CenterSpecific_ACANAF.py VCF CenterName
-	example : python CenterSpecific_ACANAF.py  MAYO_SimplexoSubset_GGA_VA_gatk2.6.4_Part2_07152013.vcf.gz Mayo
+	example : python CenterSpecific_ACANAF.py  Center_SimplexoSubset_GGA_VA_gatk2.6.4_Part2_07152013.vcf.gz Mayo
     """
     try:
         inVCF = sys.argv[1]
